@@ -517,6 +517,7 @@ class ShopCheckout extends connect(store)(PageViewElement) {
   _sendRequest(form) {
     this._waiting = true;
 
+    // TODO: In here would be call to API to handle payment and checkout
     return fetch('/data/sample_success_response.json', {
       method: 'POST',
       body: JSON.stringify({

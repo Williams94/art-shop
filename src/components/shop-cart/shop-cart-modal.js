@@ -13,13 +13,13 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-import { store } from '../store.js';
+import { store } from '../../store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { closeModal } from '../actions/app.js';
+import { closeModal } from '../../actions/app.js';
 
 // Convert Lit `TemplateResult` to `HTMLTemplateElement` so it can be interpolated
 // by Polymer's html template literal tag
-import { shopButtonStyle } from './shop-button-style.js';
+import { shopButtonStyle } from '../shop-button-style.js';
 const shopButtonStyleTemplate = document.createElement('template');
 shopButtonStyleTemplate.innerHTML = shopButtonStyle.strings[0];
 

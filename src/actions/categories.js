@@ -65,6 +65,8 @@ export const fetchCategoriesIfNeeded = () => (dispatch, getState) => {
 export const fetchCategoryItemsIfNeeded = (category) => (dispatch, getState) => {
   if (category && category.name && !category.items && !category.isFetching) {
     dispatch(requestCategoryItems(category.name));
+
+    // TODO: In here would be service call
     return fetch(`data/${category.name}.json`)
       .then(res => res.json())
       .then(items => dispatch(receiveCategoryItems(category.name, items)))

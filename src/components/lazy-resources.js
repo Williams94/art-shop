@@ -11,8 +11,8 @@
 // shop-app
 import "./shop-icons.js";
 import "./shop-analytics.js";
-import "./shop-cart-button.js";
-import "./shop-cart-modal.js";
+import "./shop-cart/shop-cart-button.js";
+import "./shop-cart/shop-cart-modal.js";
 import "./shop-snackbar.js";
 import "./shop-tabs.js";
 import "./shop-tab.js";
@@ -25,7 +25,7 @@ import "./shop-network-warning.js";
 import "./shop-404.js";
 
 // shop-cart
-import "./shop-cart-item.js";
+import "./shop-cart/shop-cart-item.js";
 
 // shop-checkout
 import "@polymer/paper-spinner/paper-spinner-lite.js";

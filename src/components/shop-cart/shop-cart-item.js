@@ -9,13 +9,13 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import { shopSelectStyle } from './shop-select-style.js';
+import { shopSelectStyle } from '../shop-select-style.js';
 import '@polymer/paper-icon-button';
-import './shop-icons.js';
-import './shop-image.js';
+import '../shop-icons.js';
+import '../shop-image.js';
 
-import { store } from '../store.js';
-import { editCart, removeFromCart } from '../actions/cart.js';
+import { store } from '../../store.js';
+import { editCart, removeFromCart } from '../../actions/cart.js';
 
 class ShopCartItem extends LitElement {
   _render({ entry }) {

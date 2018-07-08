@@ -65,7 +65,7 @@ export const updateLocation = (location) => async (dispatch, getState) => {
       dispatch(announceLabel(`Home, loaded`));
       break;
     case 'cart':
-      await import('../components/shop-cart.js');
+      await import('../components/shop-cart/shop-cart.js');
       dispatch(announceLabel(`Cart, loaded`));
       break;
     case 'checkout':
