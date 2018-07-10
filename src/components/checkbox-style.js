@@ -10,7 +10,7 @@
 
 import { html } from '@polymer/lit-element';
 
-export const shopCheckboxStyle = html`
+export const checkboxStyle = html`
 <style>
   shop-checkbox {
     display: inline-block;

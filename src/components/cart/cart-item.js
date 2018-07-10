@@ -9,18 +9,18 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import { shopSelectStyle } from '../shop-select-style.js';
+import { selectStyle } from '../select-style.js';
 import '@polymer/paper-icon-button';
-import '../shop-icons.js';
-import '../shop-image.js';
+import '../icons.js';
+import '../image.js';
 
-import { store } from '../../store.js';
-import { editCart, removeFromCart } from '../../actions/cart.js';
+import { store } from '../../store/store.js';
+import { editCart, removeFromCart } from '../../store/actions/cart.js';
 
-class ShopCartItem extends LitElement {
+class CartItem extends LitElement {
   _render({ entry }) {
     return html`
-    ${shopSelectStyle}
+    ${selectStyle}
     <style>
 
       :host {
@@ -235,4 +235,4 @@ class ShopCartItem extends LitElement {
 
 }
 
-customElements.define('shop-cart-item', ShopCartItem);
+customElements.define('shop-cart-item', CartItem);

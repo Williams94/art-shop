@@ -8,25 +8,25 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
-import { shopButtonStyle } from './shop-button-style.js';
-import { shopCommonStyle } from './shop-common-style.js';
-import { shopSelectStyle } from './shop-select-style.js';
-import './shop-image.js';
+import { buttonStyle } from '../components/button-style.js';
+import { commonStyle } from '../components/common-style.js';
+import { selectStyle } from '../components/select-style.js';
+import '../components/image.js';
 
-import { store } from '../store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { currentCategorySelector, currentItemSelector } from '../reducers/categories.js';
-import { addToCart } from '../actions/cart.js';
+import { currentCategorySelector, currentItemSelector } from '../store/reducers/categories.js';
+import { addToCart } from '../store/actions/cart.js';
 
 class ShopDetail extends connect(store)(PageViewElement) {
   _render({ _failure, _item }) {
     return html`
-    ${shopButtonStyle}
-    ${shopCommonStyle}
-    ${shopSelectStyle}
+    ${buttonStyle}
+    ${commonStyle}
+    ${selectStyle}
     <style>
 
       :host {

@@ -10,7 +10,7 @@
 
 import { html } from '@polymer/lit-element';
 
-export const shopCommonStyle = html`
+export const commonStyle = html`
 <style>
   [hidden] {
     display: none !important;

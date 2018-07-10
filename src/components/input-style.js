@@ -10,7 +10,7 @@
 
 import { html } from '@polymer/lit-element';
 
-export const shopInputStyle = html`
+export const inputStyle = html`
 <style>
   shop-input {
     display: inline-block;

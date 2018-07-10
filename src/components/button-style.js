@@ -10,7 +10,7 @@
 
 import { html } from '@polymer/lit-element';
 
-export const shopButtonStyle = html`
+export const buttonStyle = html`
 <style>
   shop-button {
     display: inline-block;

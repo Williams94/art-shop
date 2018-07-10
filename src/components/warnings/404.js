@@ -9,14 +9,14 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import { shopButtonStyle } from './shop-button-style.js';
+import { buttonStyle } from '../button-style.js';
 import '@polymer/iron-icon';
-import './shop-icons.js';
+import '../icons.js';
 
 class Shop404Warning extends LitElement {
   _render() {
     return html`
-    ${shopButtonStyle}
+    ${buttonStyle}
     <style>
 
       :host {

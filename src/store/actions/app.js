@@ -65,21 +65,21 @@ export const updateLocation = (location) => async (dispatch, getState) => {
       dispatch(announceLabel(`Home, loaded`));
       break;
     case 'cart':
-      await import('../components/shop-cart/shop-cart.js');
+      await import('../../views/cart.js');
       dispatch(announceLabel(`Cart, loaded`));
       break;
     case 'checkout':
-      await import('../components/shop-checkout.js');
+      await import('../../views/shop-checkout.js');
       dispatch(announceLabel(`Checkout, loaded`));
       break;
     case 'list':
       categoryName = splitPath[1];
-      await import('../components/shop-list.js');
+      await import('../../views/shop-list.js');
       break;
     case 'detail':
       categoryName = splitPath[1];
       itemName = splitPath[2];
-      await import('../components/shop-detail.js');
+      await import('../../views/shop-detail.js');
       break;
     default:
       page = '404';
@@ -99,7 +99,7 @@ export const updateLocation = (location) => async (dispatch, getState) => {
   // load lazy resources after render and set `lazyLoadComplete` when done.
   if (!lazyLoadComplete) {
     requestAnimationFrame(async () => {
-      await import('../components/lazy-resources.js');
+      await import('../../components/lazy-resources.js');
       dispatch({
         type: RECEIVE_LAZY_RESOURCES
       });

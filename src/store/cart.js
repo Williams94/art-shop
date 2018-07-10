@@ -10,7 +10,7 @@
 
 import { setCart } from './actions/cart.js';
 
-const CART_LOCAL_STORAGE_KEY = 'shop-cart-data';
+const CART_LOCAL_STORAGE_KEY = 'cart-data';
 
 function getLocalCartData() {
   const localCartData = localStorage.getItem(CART_LOCAL_STORAGE_KEY);

@@ -22,14 +22,14 @@ import { updateMetadata } from 'pwa-helpers/metadata.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 
-import { store } from '../store.js';
-import { currentCategorySelector } from '../reducers/categories.js';
-import { metaSelector } from '../reducers/app.js';
-import { updateLocation, updateNetworkStatus } from '../actions/app.js';
+import { store } from './store/store.js';
+import { currentCategorySelector } from './store/reducers/categories.js';
+import { metaSelector } from './store/reducers/app.js';
+import { updateLocation, updateNetworkStatus } from './store/actions/app.js';
 
-import './shop-home.js';
+import './views/shop-home.js';
 
-class ShopApp extends connect(store)(LitElement) {
+class App extends connect(store)(LitElement) {
   _render({
     _categories,
     _categoryName,
@@ -374,4 +374,4 @@ class ShopApp extends connect(store)(LitElement) {
   }
 }
 
-customElements.define('shop-app', ShopApp);
+customElements.define('shop-app', App);

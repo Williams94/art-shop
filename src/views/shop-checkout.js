@@ -8,25 +8,25 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
 import { repeat } from 'lit-html/lib/repeat.js';
-import { shopButtonStyle } from './shop-button-style.js';
-import { shopCheckboxStyle } from'./shop-checkbox-style.js';
-import { shopCommonStyle } from './shop-common-style.js';
-import { shopFormStyle } from './shop-form-style.js';
-import { shopInputStyle } from'./shop-input-style.js';
-import { shopSelectStyle } from './shop-select-style.js';
+import { buttonStyle } from '../components/button-style.js';
+import { checkboxStyle } from '../components/checkbox-style.js';
+import { commonStyle } from '../components/common-style.js';
+import { formStyle } from '../components/form-style.js';
+import { inputStyle } from '../components/input-style.js';
+import { selectStyle } from '../components/select-style.js';
 import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
 import { timeOut } from '@polymer/polymer/lib/utils/async.js';
 
-import { store } from '../store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { totalSelector } from '../reducers/cart.js';
-import { updateCheckoutState } from '../actions/checkout.js';
-import { clearCart } from '../actions/cart.js';
-import { announceLabel } from '../actions/app.js';
-import checkout from '../reducers/checkout.js';
+import { totalSelector } from '../store/reducers/cart.js';
+import { updateCheckoutState } from '../store/actions/checkout.js';
+import { clearCart } from '../store/actions/cart.js';
+import { announceLabel } from '../store/actions/app.js';
+import checkout from '../store/reducers/checkout.js';
 
 store.addReducers({
   checkout
@@ -37,12 +37,12 @@ class ShopCheckout extends connect(store)(PageViewElement) {
     const cartList = _cart ? Object.keys(_cart).map(key => _cart[key]) : [];
 
     return html`
-    ${shopButtonStyle}
-    ${shopCheckboxStyle}
-    ${shopCommonStyle}
-    ${shopFormStyle}
-    ${shopInputStyle}
-    ${shopSelectStyle}
+    ${buttonStyle}
+    ${checkboxStyle}
+    ${commonStyle}
+    ${formStyle}
+    ${inputStyle}
+    ${selectStyle}
     <style>
 
       .main-frame {

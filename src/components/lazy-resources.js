@@ -9,30 +9,30 @@
  */
 
 // shop-app
-import "./shop-icons.js";
-import "./shop-analytics.js";
-import "./shop-cart/shop-cart-button.js";
-import "./shop-cart/shop-cart-modal.js";
-import "./shop-snackbar.js";
-import "./shop-tabs.js";
-import "./shop-tab.js";
+import "./icons.js";
+import "./analytics.js";
+import "./cart/cart-button.js";
+import "./cart/cart-modal.js";
+import "./snackbar.js";
+import "./tabs/tabs.js";
+import "./tabs/tab.js";
 import "@polymer/paper-icon-button";
 import "@polymer/app-layout/app-drawer/app-drawer.js";
 
 // shop-list
 // shop-detail
-import "./shop-network-warning.js";
-import "./shop-404.js";
+import "./warnings/network-warning.js";
+import "./warnings/404.js";
 
-// shop-cart
-import "./shop-cart/shop-cart-item.js";
+// cart
+import "./cart/cart-item.js";
 
 // shop-checkout
 import "@polymer/paper-spinner/paper-spinner-lite.js";
 
-import { store } from '../store.js';
-import { installCart } from '../cart.js';
-import cart from '../reducers/cart.js';
+import { store } from '../store/store.js';
+import { installCart } from '../store/cart.js';
+import cart from '../store/reducers/cart.js';
 
 store.addReducers({
   cart

@@ -8,25 +8,25 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PageViewElement } from '../page-view-element.js';
+import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
 import { repeat } from 'lit-html/lib/repeat.js';
-import { shopButtonStyle } from '../shop-button-style.js';
-import { shopCommonStyle } from '../shop-common-style.js';
-import { shopFormStyle } from '../shop-form-style.js';
+import { buttonStyle } from '../components/button-style.js';
+import { commonStyle } from '../components/common-style.js';
+import { formStyle } from '../components/form-style.js';
 
-import { store } from '../../store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { totalSelector } from '../../reducers/cart.js';
+import { totalSelector } from '../store/reducers/cart.js';
 
-class ShopCart extends connect(store)(PageViewElement) {
+class Cart extends connect(store)(PageViewElement) {
   _render({ _cart, _total }) {
     const cartList = _cart ? Object.keys(_cart).map(key => _cart[key]) : [];
 
     return html`
-    ${shopButtonStyle}
-    ${shopCommonStyle}
-    ${shopFormStyle}
+    ${buttonStyle}
+    ${commonStyle}
+    ${formStyle}
     <style>
 
       .list {
@@ -93,4 +93,4 @@ class ShopCart extends connect(store)(PageViewElement) {
 
 }
 
-customElements.define('shop-cart', ShopCart);
+customElements.define('shop-cart', Cart);

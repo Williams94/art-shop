@@ -8,21 +8,21 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
 import { repeat } from 'lit-html/lib/repeat.js';
-import { shopCommonStyle } from './shop-common-style.js';
-import './shop-image.js';
-import './shop-list-item.js';
+import { commonStyle } from '../components/common-style.js';
+import '../components/image.js';
+import './list-item.js';
 
-import { store } from '../store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { currentCategorySelector } from '../reducers/categories.js';
+import { currentCategorySelector } from '../store/reducers/categories.js';
 
 class ShopList extends connect(store)(PageViewElement) {
   _render({ _category = {}, _failure }) {
     return html`
-    ${shopCommonStyle}
+    ${commonStyle}
     <style>
 
       .hero-image {

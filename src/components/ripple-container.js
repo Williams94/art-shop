@@ -13,7 +13,7 @@ import { PaperRippleBehavior } from '@polymer/paper-behaviors/paper-ripple-behav
 import { addListener } from '@polymer/polymer/lib/utils/gestures.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-class ShopRippleContainer extends mixinBehaviors(
+class RippleContainer extends mixinBehaviors(
   [PaperRippleBehavior], PolymerElement) {
 
   static get template() {
@@ -68,4 +68,4 @@ class ShopRippleContainer extends mixinBehaviors(
 
 }
 
-customElements.define('shop-ripple-container', ShopRippleContainer);
+customElements.define('shop-ripple-container', RippleContainer);

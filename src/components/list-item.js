@@ -10,7 +10,7 @@
 
 import { LitElement, html } from '@polymer/lit-element';
 
-class ShopListItem extends LitElement {
+class ListItem extends LitElement {
   _render({ item = {} }) {
     return html`
     <style>
@@ -62,4 +62,4 @@ class ShopListItem extends LitElement {
   }}
 }
 
-customElements.define('shop-list-item', ShopListItem);
+customElements.define('shop-list-item', ListItem);

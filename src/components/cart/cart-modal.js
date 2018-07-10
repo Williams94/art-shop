@@ -13,17 +13,17 @@ import '@polymer/paper-icon-button/paper-icon-button.js';
 import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
 
-import { store } from '../../store.js';
+import { store } from '../../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { closeModal } from '../../actions/app.js';
+import { closeModal } from '../../store/actions/app.js';
 
 // Convert Lit `TemplateResult` to `HTMLTemplateElement` so it can be interpolated
 // by Polymer's html template literal tag
-import { shopButtonStyle } from '../shop-button-style.js';
+import { buttonStyle } from '../button-style.js';
 const shopButtonStyleTemplate = document.createElement('template');
-shopButtonStyleTemplate.innerHTML = shopButtonStyle.strings[0];
+shopButtonStyleTemplate.innerHTML = buttonStyle.strings[0];
 
-class ShopCartModal extends connect(store)(mixinBehaviors(
+class CartModal extends connect(store)(mixinBehaviors(
   [IronOverlayBehaviorImpl], PolymerElement)) {
   static get template() {
     return html`
@@ -181,4 +181,4 @@ class ShopCartModal extends connect(store)(mixinBehaviors(
   notifyResize() {}
 }
 
-customElements.define('shop-cart-modal', ShopCartModal);
+customElements.define('shop-cart-modal', CartModal);

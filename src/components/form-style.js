@@ -10,7 +10,7 @@
 
 import { html } from '@polymer/lit-element';
 
-export const shopFormStyle = html`
+export const formStyle = html`
 <style>
   :host {
     display: block;

@@ -8,7 +8,7 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-class ShopAnalytics extends HTMLElement {
+class Analytics extends HTMLElement {
   connectedCallback() {
     // TODO: In here track metrics with google analytics...
 
@@ -22,4 +22,4 @@ class ShopAnalytics extends HTMLElement {
     ga('send', 'pageview');*/
   }
 }
-customElements.define('shop-analytics', ShopAnalytics);
+customElements.define('shop-analytics', Analytics);

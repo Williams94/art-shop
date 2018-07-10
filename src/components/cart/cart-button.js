@@ -10,11 +10,11 @@
 
 import { LitElement, html } from '@polymer/lit-element';
 
-import { store } from '../../store.js';
+import { store } from '../../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { numItemsSelector } from '../../reducers/cart.js';
+import { numItemsSelector } from '../../store/reducers/cart.js';
 
-class ShopCartButton extends connect(store)(LitElement) {
+class CartButton extends connect(store)(LitElement) {
   _render({ _numItems }) {
     return html`
     <style>
@@ -64,4 +64,4 @@ class ShopCartButton extends connect(store)(LitElement) {
   }
 }
 
-customElements.define('shop-cart-button', ShopCartButton);
+customElements.define('shop-cart-button', CartButton);

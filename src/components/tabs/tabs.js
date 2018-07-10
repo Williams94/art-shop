@@ -9,41 +9,38 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import './shop-ripple-container.js';
+import './tabs-overlay.js';
 
-class ShopTab extends LitElement {
+class Tabs extends LitElement {
   _render() {
     return html`
     <style>
-      [hidden] {
-        display: none !important;
+      :host {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
-      :host {
-        display: inline-block;
+      #container {
         position: relative;
       }
 
-      #overlay {
-        pointer-events: none;
-        display: none;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
+      shop-tabs-overlay {
         border-bottom: 2px solid var(--app-accent-color);
       }
-
-      :host(.shop-tabs-overlay-static-above) #overlay {
-        display: block;
-      }
     </style>
-    <div id="overlay"></div>
-    <shop-ripple-container>
+    <div id="container">
+      <shop-tabs-overlay target="${this.children[this.selectedIndex]}"></shop-tabs-overlay>
       <slot></slot>
-    </shop-ripple-container>`;
+    </div>`;
   }
+
+  static get properties() { return {
+    /**
+     * The index of the selected element.
+     */
+    selectedIndex: Number
+  }}
 }
 
-customElements.define('shop-tab', ShopTab);
+customElements.define('shop-tabs', Tabs);

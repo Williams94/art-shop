@@ -8,19 +8,19 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PageViewElement } from './page-view-element.js';
+import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
 import { repeat } from 'lit-html/lib/repeat.js';
-import { shopButtonStyle } from './shop-button-style.js';
-import './shop-image.js';
+import { buttonStyle } from '../components/button-style.js';
+import '../components/image.js';
 
-import { store } from '../store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 
 class ShopHome extends connect(store)(PageViewElement) {
   _render({ _categories }) {
     return html`
-    ${shopButtonStyle}
+    ${buttonStyle}
     <style>
 
       .image-link {

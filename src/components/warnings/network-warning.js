@@ -9,18 +9,18 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import { shopButtonStyle } from './shop-button-style.js';
+import { buttonStyle } from '../button-style.js';
 import '@polymer/iron-icon';
-import './shop-icons.js';
+import '../icons.js';
 
-import { store } from '../store.js';
+import { store } from '../../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin.js';
-import { reloadCategory } from '../actions/app.js';
+import { reloadCategory } from '../../store/actions/app.js';
 
-class ShopNetworkWarning extends connect(store)(LitElement) {
+class NetworkWarning extends connect(store)(LitElement) {
   _render({ _offline }) {
     return html`
-    ${shopButtonStyle}
+    ${buttonStyle}
     <style>
 
       :host {
@@ -78,4 +78,4 @@ class ShopNetworkWarning extends connect(store)(LitElement) {
   }
 }
 
-customElements.define('shop-network-warning', ShopNetworkWarning);
+customElements.define('shop-network-warning', NetworkWarning);
