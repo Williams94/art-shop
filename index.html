@@ -67,6 +67,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     };
   </script>
 
+  <!-- Firebase App is always required and must be first -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-app.js"></script>
+
+  <!-- Add additional services that you want to use -->
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-database.js"></script>
+  <!-- Comment out (or don't include) services that you don't want to use -->
+  <!-- <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase-storage.js"></script> -->
+
+  <script>
+    var config = {
+      apiKey: "AIzaSyCWj5jX_Us3_Vu439VvS21Hsz8VaajHSok",
+      authDomain: "art-shop-d5a95.firebaseapp.com",
+      databaseURL: "https://art-shop-d5a95.firebaseio.com",
+      projectId: "art-shop-d5a95",
+      storageBucket: "",
+      messagingSenderId: "109925701678"
+    };
+    firebase.initializeApp(config);
+  </script>
+
   <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
   <script type="module" src="src/app.js"></script>
 
