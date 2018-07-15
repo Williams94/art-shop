@@ -12,6 +12,7 @@
 import "./icons.js";
 import "./analytics.js";
 import "./cart/cart-button.js";
+import "./user-account-button.js";
 import "./cart/cart-modal.js";
 import "./snackbar.js";
 import "./tabs/tabs.js";

@@ -19,7 +19,7 @@ export const buttonStyle = html`
   shop-button > * {
     display: inline-block;
     box-sizing: border-box;
-    border: 2px solid #000;
+    border: 1px solid var(--app-secondary-color);
     background-color: #FFF;
     font-size: 14px;
     font-weight: 500;
@@ -28,8 +28,7 @@ export const buttonStyle = html`
     padding: 8px 44px;
     text-align: center;
     text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 0;
+    border-radius: 20px;
     outline: none;
     -webkit-appearance: none;
   }

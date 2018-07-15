@@ -100,6 +100,8 @@ export const metaSelector = createSelector(
         return { title: 'Cart' };
       case 'checkout':
         return { title: 'Checkout' };
+      case 'user-account':
+        return { title: 'User Account' };
       default:
         return { title: '404' };
     }

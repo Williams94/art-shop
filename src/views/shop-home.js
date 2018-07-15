@@ -79,6 +79,10 @@ class ShopHome extends connect(store)(PageViewElement) {
         font-size: 1.1em;
       }
 
+      shop-button {
+        text-transform: capitalize;
+      }
+
       @media (max-width: 767px) {
         shop-image {
           height: 240px;
@@ -102,9 +106,8 @@ class ShopHome extends connect(store)(PageViewElement) {
         <a class="image-link" href="/list/${category.name}">
           <shop-image src="${category.image}" alt="${category.title}" placeholder="${category.placeholder}"></shop-image>
         </a>
-        <h2>${category.title}</h2>
         <shop-button>
-          <a aria-label$="${category.title} Shop Now" href="/list/${category.name}">Shop Now</a>
+          <a aria-label$="${category.title}" href="/list/${category.name}">${category.title}</a>
         </shop-button>
       </div>`;
     })}

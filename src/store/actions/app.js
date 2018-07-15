@@ -81,6 +81,9 @@ export const updateLocation = (location) => async (dispatch, getState) => {
       itemName = splitPath[2];
       await import('../../views/shop-detail.js');
       break;
+    case 'user-account':
+      await import('../../views/user-account.js');
+      break;
     default:
       page = '404';
       dispatch(announceLabel(`Page not found`));

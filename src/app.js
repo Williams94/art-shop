@@ -53,9 +53,9 @@ class App extends connect(store)(LitElement) {
         padding-top: 130px;
         padding-bottom: 64px;
         min-height: 100vh;
-        --app-primary-color: #202020;
-        --app-secondary-color: #757575;
-        --app-accent-color: #172C50;
+        --app-primary-color: #F5C7DB;
+        --app-secondary-color: #E0BFEA;
+        --app-accent-color: #FFD6CF;
         --paper-button-ink-color: var(--app-accent-color);
         --paper-icon-button-ink-color: var(--app-accent-color);
         --paper-spinner-color: var(--app-accent-color);
@@ -105,6 +105,12 @@ class App extends connect(store)(LitElement) {
         width: 40px;
       }
 
+      user-account-button {
+        display: block;
+        width: 40px;
+        margin: 10px;
+      }
+
       .announcer {
         position: fixed;
         height: 0;
@@ -134,8 +140,13 @@ class App extends connect(store)(LitElement) {
         color: var(--app-primary-color);
       }
 
+      .drawer-list-container {
+        display: flex;
+        justify-content: space-between;
+      }
+
       .drawer-list {
-        margin: 20px 0;
+        margin: 60px 0;
       }
 
       .drawer-list a {
@@ -198,7 +209,6 @@ class App extends connect(store)(LitElement) {
         margin: 8px auto 0;
         background-color: var(--app-primary-color);
         color: white;
-        text-transform: uppercase;
       }
 
       /* small screen */
@@ -226,6 +236,7 @@ class App extends connect(store)(LitElement) {
           </a>
         </div>
         <div class="logo" main-title><a href="/" aria-label="Art Shop Home">Art Shop</a></div>
+        ${ !_smallScreen ? html`<user-account-button></user-account-button>` : null}
         <shop-cart-button></shop-cart-button>
       </app-toolbar>
 
@@ -249,11 +260,14 @@ class App extends connect(store)(LitElement) {
     ${ _smallScreen && _lazyResourcesLoaded ?
       html`
         <app-drawer opened="${_drawerOpened}" tabindex="0" on-opened-changed="${e => this._drawerOpened = e.target.opened}">
+        <div class="drawer-list-container">
           <nav class="drawer-list">
-            ${repeat(categoriesList, category => html`
-              <a class$="${category.name === _categoryName ? 'active' : ''}" href="/list/${category.name}">${category.title}</a>
-            `)}
-          </nav>
+              ${repeat(categoriesList, category => html`
+                <a class$="${category.name === _categoryName ? 'active' : ''}" href="/list/${category.name}">${category.title}</a>
+              `)}
+            </nav>
+            <user-account-button></user-account-button>
+          </div>
         </app-drawer>
       ` : null
     }
@@ -269,6 +283,8 @@ class App extends connect(store)(LitElement) {
       <shop-cart active?="${_page === 'cart'}"></shop-cart>
       <!-- checkout view -->
       <shop-checkout active?="${_page === 'checkout'}"></shop-checkout>
+      <!-- user account view -->
+      <user-account active?="${_page === 'user-account'}"></user-account>
 
       <shop-404-warning active?="${_page === '404'}"></shop-404-warning>
     </main>
