@@ -10,11 +10,11 @@
 
 import { LitElement, html } from '@polymer/lit-element';
 
-import { store } from '../../store/store.js';
+import { store } from '../store/store.js';
 import { connect } from 'pwa-helpers/connect-mixin';
-import { numItemsSelector } from '../../store/reducers/cart.js';
+import { numItemsSelector } from '../store/reducers/cart.js';
 
-class CartButton extends connect(store)(LitElement) {
+class ResetPassword extends connect(store)(LitElement) {
   _render({ _numItems }) {
     return html`
     <style>
@@ -48,10 +48,9 @@ class CartButton extends connect(store)(LitElement) {
 
     </style>
 
-    <a href="/cart" tabindex="-1">
-      <paper-icon-button icon="shopping-cart" aria-label$="${`Shopping cart: ${_numItems} item${_numItems > 1 ? 's' : ''}`}"></paper-icon-button>
+    <a tabindex="-1">
+      <input type="button" on-click="${e => this._signin()}" value="Reset Password">
     </a>
-    ${ _numItems ? html`<div class="cart-badge" aria-hidden="true">${_numItems}</div>`: null }
 `;
   }
 
@@ -64,4 +63,4 @@ class CartButton extends connect(store)(LitElement) {
   }
 }
 
-customElements.define('shop-cart-button', CartButton);
+customElements.define('reset-password', ResetPassword);

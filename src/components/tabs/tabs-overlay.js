@@ -9,8 +9,8 @@
  */
 
 import { LitElement, html } from '@polymer/lit-element';
-import { flush } from '@polymer/polymer/lib/legacy/polymer.dom.js';
-import { microTask, timeOut } from '@polymer/polymer/lib/utils/async.js';
+import { flush } from '@polymer/polymer/lib/legacy/polymer.dom';
+import { microTask, timeOut } from '@polymer/polymer/lib/utils/async';
 
 class TabsOverlay extends LitElement {
   _render() {

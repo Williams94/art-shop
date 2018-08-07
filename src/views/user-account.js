@@ -10,18 +10,18 @@
 
 import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
-import { repeat } from 'lit-html/lib/repeat.js';
+import { repeat } from 'lit-html/lib/repeat';
 import { buttonStyle } from '../components/button-style.js';
 import { checkboxStyle } from '../components/checkbox-style.js';
 import { commonStyle } from '../components/common-style.js';
 import { formStyle } from '../components/form-style.js';
 import { inputStyle } from '../components/input-style.js';
 import { selectStyle } from '../components/select-style.js';
-import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
-import { timeOut } from '@polymer/polymer/lib/utils/async.js';
+import { Debouncer } from '@polymer/polymer/lib/utils/debounce';
+import { timeOut } from '@polymer/polymer/lib/utils/async';
 
 import { store } from '../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { totalSelector } from '../store/reducers/cart.js';
 import { updateCheckoutState } from '../store/actions/checkout.js';
 import { clearCart } from '../store/actions/cart.js';
@@ -122,6 +122,22 @@ class ShopCheckout extends connect(store)(PageViewElement) {
         margin: 30px 0;
       }
 
+      #loginForm {
+        display: flex;
+        flex-direction: column;
+        justify-items: center;
+        align-items: center;
+      }
+
+      shop-button {
+        margin: 5px 0;
+      }
+
+      #reset-password-link {
+        margin: 5px 0 10px;
+        font-size: 10px;
+      }
+
       @media (max-width: 767px) {
 
         .grid {
@@ -156,9 +172,12 @@ class ShopCheckout extends connect(store)(PageViewElement) {
             <shop-underline></shop-underline>
           </shop-md-decorator>
         </shop-input>
-        <button type="submit"></button>
-        <shop-button responsive id="submitBox">
-          <input type="button" on-click="${e => this._submit()}" value="Sign Up">
+        <a id="reset-password-link" on-click="${e => this._sendPasswordReset()}">Reset Password</a>
+        <shop-button id="login-button">
+          <input type="button" on-click="${e => this._signin()}" value="Sign In">
+        </shop-button>
+        <shop-button id="signup-button">
+          <input type="button" on-click="${e => this._signup()}" value="Sign Up">
         </shop-button>
       </form>
     </div>
@@ -203,16 +222,24 @@ class ShopCheckout extends connect(store)(PageViewElement) {
 
   }}
 
+  _getFormData(form) {
+    return {
+      email: form.children[0].children[0].value,
+      password: form.children[1].children[0].value
+    };
+  }
+
   _stateChanged(state) {
     this._cart = state.cart;
     this._total = totalSelector(state);
     this._state = state.checkout.state;
   }
 
-  _submit() {
+  _signin() {
     const checkoutForm = this.shadowRoot.querySelector('#loginForm');
     if (this._validateForm(checkoutForm)) {
-      this._sendRequest(checkoutForm)
+      const { email, password } = _getFormData(checkoutForm);
+      this._sendLoginRequest(email, password)
         .then(res => res.json())
         .then(data => this._didReceiveResponse(data))
         .catch(_ => this._didReceiveResponse({
@@ -220,6 +247,21 @@ class ShopCheckout extends connect(store)(PageViewElement) {
           errorMessage: _.code + '' + _.message
         }));
     }
+  }
+
+  _signup() {
+    const checkoutForm = this.shadowRoot.querySelector('#loginForm');
+    if (this._validateForm(checkoutForm)) {
+      const { email, password } = _getFormData(checkoutForm);
+      this._sendSignupRequest(email, password)
+        .then(res => res.json())
+        .then(data => this._didReceiveResponse(data))
+        .catch(_ => this._didReceiveResponse({
+          error: 1,
+          errorMessage: _.code + '' + _.message
+        }));
+    }
+    this.__sendEmailVerification();
   }
 
   /**
@@ -234,15 +276,12 @@ class ShopCheckout extends connect(store)(PageViewElement) {
         el.removeAttribute('aria-invalid');
       } else {
         if (!firstInvalid) {
-          // announce error message
           if (el.nextElementSibling) {
             store.dispatch(announceLabel(el.nextElementSibling.getAttribute('error-message')));
           }
           if (el.scrollIntoViewIfNeeded) {
-            // safari, chrome
             el.scrollIntoViewIfNeeded();
           } else {
-            // firefox, edge, ie
             el.scrollIntoView(false);
           }
           el.focus();
@@ -254,39 +293,57 @@ class ShopCheckout extends connect(store)(PageViewElement) {
     return !firstInvalid;
   }
 
-  /**
-   * Sends form and cart data to the server and updates the UI to reflect
-   * the waiting state.
-   */
-  _sendRequest(form) {
+  _sendSignupRequest(email, password) {
     this._waiting = true;
 
-    console.log(form.children);
-    return firebase.auth().createUserWithEmailAndPassword(email, password);
+    return firebase.auth()
+      .createUserWithEmailAndPassword(email, password).catch((error) => {
+        if (errorCode == 'auth/weak-password') {
+          console.log('password to weak');
+        }
+        console.log(error);
+      });
+    }
 
-    // TODO: In here would be call to API to handle payment and checkout
-    return fetch('/data/sample_success_response.json', {
-      method: 'POST',
-      body: JSON.stringify({
-        /**
-         * NOTE: For demo purposes, form fields here are not sent to the
-         * server to avoid unintentionally capturing private data.
-         */
-        // ccExpMonth: form.elements.ccExpMonth.value,
-        // ccExpYear: form.elements.ccExpYear.value,
-        // ...
-        cart: Object.keys(this._cart).map(key => {
-          const entry = this._cart[key];
-          return {
-            ...entry,
-            item: entry.item.name
-          }
-        })
-      }),
-      headers: {
-        'Content-Type': 'application/json'
+  _sendLoginRequest(email, password) {
+    this._waiting = true;
+
+    return firebase.auth()
+    .signInWithEmailAndPassword(email, password).catch(function(error) {
+      if (errorCode === 'auth/wrong-password') {
+        console.log('password incorrect');
       }
+      console.log(error);
     });
+  }
+
+  _sendEmailVerification() {
+    firebase.auth().currentUser.sendEmailVerification().then(function() {
+        alert('Email Verification Sent!');
+      });
+    }
+
+  _sendPasswordReset() {
+    const checkoutForm = this.shadowRoot.querySelector('#loginForm');
+    const form = {
+      ...checkoutForm,
+      elements: [ checkoutForm.elements[0] ],
+    };
+    if (this._validateForm(form)) {
+      const { email } = _getFormData(checkoutForm);
+      firebase.auth().sendPasswordResetEmail(email).then(function() {
+        alert('Password Reset Email Sent!');
+      }).catch(function(error) {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        if (errorCode == 'auth/invalid-email') {
+          alert(errorMessage);
+        } else if (errorCode == 'auth/user-not-found') {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
+    }
   }
 
   /**
@@ -298,18 +355,9 @@ class ShopCheckout extends connect(store)(PageViewElement) {
     this._waiting = false;
 
     if (response.success) {
-      store.dispatch(updateCheckoutState('success'));
-      store.dispatch(clearCart());
+      store.dispatch(updateSignupState('success'));
     } else {
-      store.dispatch(updateCheckoutState('error'));
-    }
-  }
-
-  _toggleBillingAddress(e) {
-    this._hasBillingAddress = e.target.checked;
-
-    if (this._hasBillingAddress) {
-      this.$.billAddress.focus();
+      store.dispatch(updateSignupState('error'));
     }
   }
 

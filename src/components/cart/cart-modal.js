@@ -8,13 +8,13 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import '@polymer/paper-icon-button/paper-icon-button.js';
-import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior/iron-overlay-behavior.js';
-import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
+import { PolymerElement, html } from '@polymer/polymer';
+import '@polymer/paper-icon-button';
+import { IronOverlayBehaviorImpl } from '@polymer/iron-overlay-behavior';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 
 import { store } from '../../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { closeModal } from '../../store/actions/app.js';
 
 // Convert Lit `TemplateResult` to `HTMLTemplateElement` so it can be interpolated

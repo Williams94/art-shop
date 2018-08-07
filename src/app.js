@@ -53,7 +53,7 @@ class App extends connect(store)(LitElement) {
         padding-top: 130px;
         padding-bottom: 64px;
         min-height: 100vh;
-        --app-primary-color: #F5C7DB;
+        --app-primary-color: #ff84b9;
         --app-secondary-color: #E0BFEA;
         --app-accent-color: #FFD6CF;
         --paper-button-ink-color: var(--app-accent-color);

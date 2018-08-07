@@ -14,7 +14,7 @@ import '@polymer/iron-icon';
 import '../icons.js';
 
 import { store } from '../../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { reloadCategory } from '../../store/actions/app.js';
 
 class NetworkWarning extends connect(store)(LitElement) {

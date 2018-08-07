@@ -10,13 +10,13 @@
 
 import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
-import { repeat } from 'lit-html/lib/repeat.js';
+import { repeat } from 'lit-html/lib/repeat';
 import { buttonStyle } from '../components/button-style.js';
 import { commonStyle } from '../components/common-style.js';
 import { formStyle } from '../components/form-style.js';
 
 import { store } from '../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { totalSelector } from '../store/reducers/cart.js';
 
 class Cart extends connect(store)(PageViewElement) {

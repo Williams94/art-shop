@@ -8,8 +8,8 @@
  * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
  */
 
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/iron-iconset-svg/iron-iconset-svg.js';
+import '@polymer/iron-icon';
+import '@polymer/iron-iconset-svg';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<iron-iconset-svg style="display:none" name="icons" size="24">

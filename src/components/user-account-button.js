@@ -11,7 +11,7 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 import { store } from '../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { numItemsSelector } from '../store/reducers/cart.js';
 
 class UserAccountButton extends connect(store)(LitElement) {
@@ -49,7 +49,8 @@ class UserAccountButton extends connect(store)(LitElement) {
     </style>
 
     <a href="/user-account" tabindex="-1">
-      <paper-icon-button icon="user" aria-label$="${`Shopping cart: ${_numItems} item${_numItems > 1 ? 's' : ''}`}"></paper-icon-button>
+      <paper-icon-button icon="user"
+        aria-label$="${`Shopping cart: ${_numItems} item${_numItems > 1 ? 's' : ''}`}"></paper-icon-button>
     </a>
     ${ _numItems ? html`<div class="cart-badge" aria-hidden="true">${_numItems}</div>`: null }
 `;

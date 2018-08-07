@@ -10,14 +10,14 @@
 
 import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
-import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
+import { unsafeHTML } from 'lit-html/lib/unsafe-html';
 import { buttonStyle } from '../components/button-style.js';
 import { commonStyle } from '../components/common-style.js';
 import { selectStyle } from '../components/select-style.js';
 import '../components/image.js';
 
 import { store } from '../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { currentCategorySelector, currentItemSelector } from '../store/reducers/categories.js';
 import { addToCart } from '../store/actions/cart.js';
 

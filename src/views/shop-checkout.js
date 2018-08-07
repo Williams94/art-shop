@@ -10,18 +10,18 @@
 
 import { PageViewElement } from '../components/page-view-element.js';
 import { html } from '@polymer/lit-element';
-import { repeat } from 'lit-html/lib/repeat.js';
+import { repeat } from 'lit-html/lib/repeat';
 import { buttonStyle } from '../components/button-style.js';
 import { checkboxStyle } from '../components/checkbox-style.js';
 import { commonStyle } from '../components/common-style.js';
 import { formStyle } from '../components/form-style.js';
 import { inputStyle } from '../components/input-style.js';
 import { selectStyle } from '../components/select-style.js';
-import { Debouncer } from '@polymer/polymer/lib/utils/debounce.js';
-import { timeOut } from '@polymer/polymer/lib/utils/async.js';
+import { Debouncer } from '@polymer/polymer/lib/utils/debounce';
+import { timeOut } from '@polymer/polymer/lib/utils/async';
 
 import { store } from '../store/store.js';
-import { connect } from 'pwa-helpers/connect-mixin.js';
+import { connect } from 'pwa-helpers/connect-mixin';
 import { totalSelector } from '../store/reducers/cart.js';
 import { updateCheckoutState } from '../store/actions/checkout.js';
 import { clearCart } from '../store/actions/cart.js';
